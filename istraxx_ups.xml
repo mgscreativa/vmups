@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="2.5" type="plugin" group="vmshipment" method="upgrade">
+    <name>Vm Shipment - UPS</name>
+    <creationDate>June 2012</creationDate>
+    <author>Valerie Isaksen (alatak)</author>
+    <authorUrl>http://www.virtuemart.net</authorUrl>
+    <authorEmail>alatak@alatak.net</authorEmail>
+    <copyright>copyright (C)2011 iStraxx software. All rights reserved.</copyright>
+    <version>V1.13</version>
+    <description>VirtueMart 2 Shipment plugin for UPS United Parcel Service. Enable the plugin first.You are updating your plugin? New fieldeters are available. Check your UPS shipment configuration</description>
+    <languages>
+        <language tag="en-GB">en-GB.plg_vmshipment_istraxx_ups.ini</language>
+    </languages>
+    <files>
+        <filename plugin="istraxx_ups">istraxx_ups.php</filename>
+        <folder>fields</folder>
+        <folder>tmpl</folder>
+    </files>
+    <media folder="images" destination="../images/virtuemart/shipment">
+        <filename>UPS_L.gif</filename>
+        <filename>UPS_M.gif</filename>
+        <filename>UPS_S.gif</filename>
+    </media>
+    <vmconfig>
+        <fields name="params" addfieldpath="plugins/vmshipment/istraxx_ups/fields" >
+            <fieldset name="shipment" label="VMSHIPMENT_ISTRAXX_UPS_SHIPMENT_TITLE" addfieldpath="administrator/components/com_virtuemart/fields">
+               	<field type="upscurl" />
+                <field name="key" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_API_KEY" description="VMSHIPMENT_ISTRAXX_UPS_API_KEY_DESC"/>
+                <field name="password" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_API_PASSWORD" description="VMSHIPMENT_ISTRAXX_UPS_API_PASSWORD_DESC"/>
+                <field name="account" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_API_USERNAME" description="VMSHIPMENT_ISTRAXX_UPS_API_USERNAME_DESC"/>
+                <field name="shipper_number" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_API_SHIPPER_NUMBER" description="VMSHIPMENT_ISTRAXX_UPS_API_SHIPPER_NUMBER_DESC"/>
+            </fieldset>
+
+            <fieldset name="opt1" label="VMSHIPMENT_ISTRAXX_UPS_ADDRESS_SHOP_WHAREHOUSE" >
+                <field name="ups_address" type="list" default="shop" label="VMSHIPMENT_ISTRAXX_UPS_ADDRESS" description="VMSHIPMENT_ISTRAXX_UPS_ADDRESS_DESC">
+                    <option value="shop">VMSHIPMENT_ISTRAXX_UPS_ADDRESS_SHOP</option>
+                    <option value="wharehouse">VMSHIPMENT_ISTRAXX_UPS_ADDRESS_WHAREHOUSE</option>
+                </field>
+                <field name="shipper_companyfrom" type="text" size="80" default="" label="VMSHIPMENT_ISTRAXX_UPS_COMPANY_FROM" description="VMSHIPMENT_ISTRAXX_UPS_COMPANY_FROM_DESC"/>
+                <field name="shipper_phonefrom" type="text" size="80" default="" label="VMSHIPMENT_ISTRAXX_UPS_PHONE_FROM" description="VMSHIPMENT_ISTRAXX_UPS_PHONE_FROM_DESC"/>
+                <field name="shipper_address1from" type="text" size="80" default="" label="VMSHIPMENT_ISTRAXX_UPS_ADDRESS1_FROM" description="VMSHIPMENT_ISTRAXX_UPS_ADDRESS1_FROM_DESC"/>
+                <field name="shipper_address2from" type="text" size="80" default="" label="VMSHIPMENT_ISTRAXX_UPS_ADDRESS2_FROM" description="VMSHIPMENT_ISTRAXX_UPS_ADDRESS2_FROM_DESC"/>
+                <field name="shipper_shipfrom" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_ZIP_FROM" description="VMSHIPMENT_ISTRAXX_UPS_ZIP_FROM_DESC"/>
+                <field name="shipper_statefrom" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_STATE_FROM" description="VMSHIPMENT_ISTRAXX_UPS_STATE_FROM_DESC"/>
+                <field name="shipper_cityfrom" type="text" size="50" default="" label="VMSHIPMENT_ISTRAXX_UPS_CITY_FROM" description="VMSHIPMENT_ISTRAXX_UPS_CITY_FROM_DESC"/>
+                <field name="countryfrom" type="countryfrom" label="VMSHIPMENT_ISTRAXX_UPS_COUNTRY_FROM" description="VMSHIPMENT_ISTRAXX_UPS_COUNTRY_FROM_DESC" />
+            </fieldset>
+
+            <fieldset name="opt2" label="VMSHIPMENT_ISTRAXX_UPS_OTHER" >
+                <field name="services" type="upsdomestic" default="11" label="VMSHIPMENT_ISTRAXX_UPS_SERVICES" description="VMSHIPMENT_ISTRAXX_UPS_SERVICES_DESC"/>
+                <field name="pickup_type" type="upspickup" default="01" label="VMSHIPMENT_ISTRAXX_UPS_PICKUP_TYPE" description="VMSHIPMENT_ISTRAXX_UPS_PICKUP_TYPE_DESC"/>
+                <field name="customer_classification" type="list" default="" label="VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION"
+                       description="VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION_DESC">
+                    <option value="">VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION_DEFAULT</option>
+                    <option value="01">VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION_WHOLESALE</option>
+                    <option value="03">VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION_OCCASIONAL</option>
+                    <option value="04">VMSHIPMENT_ISTRAXX_UPS_CUSTOMER_CLASSIFICATION_RETAIL</option>
+                </field>
+                <field name="packaging" type="upspackaging" default="02" label="VMSHIPMENT_ISTRAXX_UPS_PACKAGING_TYPE" description="VMSHIPMENT_ISTRAXX_UPS_PACKAGING_TYPE_DESC"/>
+                <field name="weight_unit" type="list" default="KGS" label="VMSHIPMENT_ISTRAXX_UPS_WEIGHT_UNIT" description="VMSHIPMENT_ISTRAXX_UPS_WEIGHT_UNIT_DESC">
+                    <option value="GRS">GRS</option>
+                    <option value="KGS">KGS</option>
+                    <option value="LBS">LBS</option>
+                </field>
+                <field name="destination_type" type="list" default="auto"
+                       label="VMSHIPMENT_ISTRAXX_UPS_DESTINATION" description="VMSHIPMENT_ISTRAXX_UPS_DESTINATION_DESC">
+                    <option value="auto">VMSHIPMENT_ISTRAXX_UPS_DESTINATION_AUTO</option>
+                    <option value="commercial">VMSHIPMENT_ISTRAXX_UPS_DESTINATION_COMMERCIAL</option>
+                    <option value="residential">VMSHIPMENT_ISTRAXX_UPS_DESTINATION_RESIDENTIAL</option>
+                </field>
+                <field name="insured_value" type="list" default="0" label="VMSHIPMENT_ISTRAXX_UPS_INSUREDVALUE" description="VMSHIPMENT_ISTRAXX_UPS_INSUREDVALUE_DESC">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="negociated_rates" type="list" default="0" label="VMSHIPMENT_ISTRAXX_UPS_NEGOCIATEDRATES" description="VMSHIPMENT_ISTRAXX_UPS_NEGOCIATEDRATES_DESC">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="opt3" label="VMSHIPMENT_ISTRAXX_UPS_DOMESTIC" >
+                <field name="countries_domestic" type="upscountries" scope="com_virtuemart" default="" label="VMSHIPMENT_ISTRAXX_UPS_DOMESTIC_COUNTRIES" description="VMSHIPMENT_ISTRAXX_UPS_DOMESTIC_COUNTRIES_DESC"/>
+            </fieldset>
+
+            <fieldset name="opt4" label="VMSHIPMENT_ISTRAXX_UPS_VIRTUEMART_PARAMS" >
+                <field name="shipment_logos" type="vmfiles" label="VMSHIPMENT_ISTRAXX_UPS_LOGOS"
+                       description="VMSHIPMENT_ISTRAXX_UPS_LOGOS_DESC"
+                       directory="/images/stories/virtuemart/shipment"
+                       default="default" hide_default="1" hide_none="1"
+                       stripext="0" exclude="^_"/>
+
+                <field name="charge_tax" type="list" default="0" label="VMSHIPMENT_ISTRAXX_UPS_CHARGE_TAX" description="VMSHIPMENT_ISTRAXX_UPS_CHARGE_TAX_DESC">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMSHIPMENT_ISTRAXX_UPS_TAX" description="VMSHIPMENT_ISTRAXX_UPS_TAX_DESC"/>
+            </fieldset>
+
+        </fields>
+    </vmconfig>
+</extension>
